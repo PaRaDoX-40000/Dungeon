@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5941532045940966224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1380198068365581817}
+  - component: {fileID: 6224429743644845952}
+  - component: {fileID: 4596722133290919929}
+  m_Layer: 0
+  m_Name: adventure
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1380198068365581817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941532045940966224}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -771.80005, y: -556.6987, z: 78.060974}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6224429743644845952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941532045940966224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c85b0658d6970e4cb9cd6bd717d2114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroes: []
+  consumables: []
+  loots:
+  - {fileID: 11400000, guid: 58e7b9cde1486b64d9578b11f7592515, type: 2}
+  - {fileID: 11400000, guid: 5ae6a213552211a44899b06fe176cfc0, type: 2}
+  dungeonCollection: {fileID: 6847681227734475139, guid: ea611c5049c0b8e42995cbfa6a2f344d,
+    type: 3}
+  activeDungeon: {fileID: 0}
+  speed: 0
+  fight: {fileID: 4596722133290919929}
+  commonHeir: {fileID: 0}
+  reportPanel: {fileID: 0}
+--- !u!114 &4596722133290919929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941532045940966224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7a3c769ff46834596e0cf586242f49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroes: []
+  consumableHealing:
+  - {fileID: 11400000, guid: d764216d7e33a0346991eff796a54b5c, type: 2}
+  - {fileID: 11400000, guid: d12a35d8f372f7c4f90fca8efceca34d, type: 2}
+  - {fileID: 11400000, guid: 851df2d46deb5374c901393d6861073f, type: 2}
+  adventure: {fileID: 6224429743644845952}

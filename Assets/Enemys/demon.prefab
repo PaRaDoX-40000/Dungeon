@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5656159808349852321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2511431579263740061}
+  - component: {fileID: 3191038640706427470}
+  m_Layer: 0
+  m_Name: demon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2511431579263740061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5656159808349852321}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 935.9508, y: 820.5242, z: -79.727325}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3191038640706427470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5656159808349852321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da24e9afda51e0248bb481cbfb93bf90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stats: 1e0000001e0000000b00000006000000040000000a000000
+  rarityLoots:
+  - loot: {fileID: 11400000, guid: 6d46dc1f8dc11db448504d2bb7cbf167, type: 2}
+    rarity: 0.7
+  - loot: {fileID: 11400000, guid: 5ae6a213552211a44899b06fe176cfc0, type: 2}
+    rarity: 0.2
+  - loot: {fileID: 11400000, guid: 5ae6a213552211a44899b06fe176cfc0, type: 2}
+    rarity: 0.2
+  - loot: {fileID: 11400000, guid: 6d46dc1f8dc11db448504d2bb7cbf167, type: 2}
+    rarity: 0.5
+  icon: {fileID: 0}
+  experiencePoints: 500
+  "statusEffect\u0421hance":
+    statusEffect: {fileID: 0}
+    chance: 0

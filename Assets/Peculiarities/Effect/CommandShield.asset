@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77fee2c70c9eb50438cf4fecb4278f47, type: 3}
+  m_Name: CommandShield
+  m_EditorClassIdentifier: 
+  heroes:
+  - name: 
+    Stats: 51000000590000000d0000000b000000000000000a00000009000000590000000c000000
+    level: 1
+    icon: {fileID: 21300000, guid: af870b3d8471f5247b3696107f051ca5, type: 3}
+    heroPeculiarities: []
+    retreated: 1
+    equipable:
+    - portrait: {fileID: 0}
+      equipped: 0
+      equipableClass: {fileID: 0}
+      statsAp: []
+    - portrait: {fileID: 0}
+      equipped: 0
+      equipableClass: {fileID: 0}
+      statsAp: []
+    - portrait: {fileID: 0}
+      equipped: 0
+      equipableClass: {fileID: 0}
+      statsAp: []
+    clas: 1
+  armor: 20
