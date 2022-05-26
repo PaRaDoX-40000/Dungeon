@@ -18,9 +18,10 @@ public class AdventureHeroSlot : MonoBehaviour
         icon.sprite = sprite;
         this.adventurePanel = adventurePanel;
         defaultSprite = sprite;
+        gameObject.SetActive(true);
     }
 
-    public void ChangeHeroIcon(Hero hero)
+    public void ChangeHero(Hero hero)
     {
         icon.sprite = hero.Icon;
         this.hero = hero;

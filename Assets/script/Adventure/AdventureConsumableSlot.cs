@@ -14,6 +14,7 @@ public class AdventureConsumableSlot : MonoBehaviour
         icon.sprite = consumable.Icon;
         this.consumable = consumable;
         this.adventurePanel = adventurePanel;
+        gameObject.SetActive(true);
     }
 
     public void ReturnConsumable()

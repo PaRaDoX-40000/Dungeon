@@ -7,12 +7,12 @@ public class AdventurePanel : MonoBehaviour
     [SerializeField] private DungeonCollection dungeonCollection;
     [SerializeField] private AdventurePanelUI adventurePanelUI;
     [SerializeField] private CommonHeir commonHeir;   
-    [SerializeField] private Transform сonnectorAdventures;
-    [SerializeField] private PeculiaritiesCollection peculiaritiesCollection;
+    [SerializeField] private Transform сonnectorAdventures; 
     [SerializeField] private ReportPanel reportPanel;
     [SerializeField] private GameObject adventurePrefab;
 
     private int maxHero = 4;
+    private int maxConsumabls = 20;
     private Hero[] chosenHeroes;
     private List<Consumable> chosenConsumable =new List<Consumable>();
 
@@ -26,7 +26,7 @@ public class AdventurePanel : MonoBehaviour
     }
 
     public void ShowConsumables()
-    {
+    {       
         adventurePanelUI.ShowConsumables(commonHeir.dataBase.consumables);
     }
     public void ShowHeroes()
@@ -42,7 +42,7 @@ public class AdventurePanel : MonoBehaviour
                 chosenHeroes[i] = hero;
                 commonHeir.dataBase.hero.Remove(hero);
                 ShowHeroes();
-                adventurePanelUI.ChangeHeroIcon(hero, i);
+                adventurePanelUI.ChangeHero(hero, i);
                 break;
             }
         }
@@ -50,10 +50,14 @@ public class AdventurePanel : MonoBehaviour
 
     public void ChooseConsumable(Consumable consumable)
     {
-        chosenConsumable.Add(consumable);
-        commonHeir.dataBase.TryRemoveConsumable(consumable);
-        ShowConsumables();
-        adventurePanelUI.ShowConsumablesSlots(chosenConsumable);
+        if (chosenConsumable.Count < maxConsumabls)
+        {
+            chosenConsumable.Add(consumable);
+            commonHeir.dataBase.TryRemoveConsumable(consumable);
+            ShowConsumables();
+            adventurePanelUI.ShowConsumablesSlots(chosenConsumable);
+        }
+       
     }
 
     public void ReturnConsumable(Consumable consumable)

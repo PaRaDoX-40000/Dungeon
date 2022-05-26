@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PanelAdventureConsumables : MonoBehaviour
+public class AdventureConsumablesPanel : MonoBehaviour
 {
     [SerializeField] private Image icon;
     [SerializeField] private Text textConsumablesName;
@@ -21,6 +21,7 @@ public class PanelAdventureConsumables : MonoBehaviour
         textNumber.text = number;
         this.adventurePanel = adventurePanel;
         this.consumable = consumable;
+        gameObject.SetActive(true);
     }
 
     public void ChooseConsumable()

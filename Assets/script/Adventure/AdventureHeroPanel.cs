@@ -22,6 +22,7 @@ public class AdventureHeroPanel : MonoBehaviour
         textHealth.text = hero.Stats[0].ToString() + "/"+ hero.Stats[1].ToString();
         this.adventurePanel = adventurePanel;
         this.hero = hero;
+        gameObject.SetActive(true);
     }
 
     public void ChooseHero()

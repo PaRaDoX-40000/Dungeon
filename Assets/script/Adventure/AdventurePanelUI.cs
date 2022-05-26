@@ -5,103 +5,103 @@ using UnityEngine.UI;
 
 public class AdventurePanelUI : MonoBehaviour
 {
-    [SerializeField] private Transform сonnectorHero;
-    [SerializeField] private Transform сonnectorConsumables;
-    [SerializeField] private Transform сonnectorHeroSlots;
+  
+    [SerializeField] private AdventureHeroPanel[] adventureHeroPanel;    
+    [SerializeField] private AdventureConsumablesPanel[] adventureConsumablesPanel;    
+    [SerializeField] private AdventureConsumableSlot[] adventureConsumableSlot;   
+    [SerializeField] private AdventureHeroSlot[] adventureHeroSlot;    
 
-    [SerializeField] private GameObject heroPanel;
-    [SerializeField] private GameObject consumablesPanel;
-    [SerializeField] private GameObject consumablesSlot;
-    [SerializeField] private GameObject heroSlot;
-
-
-    [SerializeField] private AdventureHeroSlot[] heroSlots; 
-
-    [SerializeField] private Sprite defaultHeroSlot;
+    [SerializeField] private Sprite defaultHeroSlotSprite;
 
     [SerializeField] private AdventurePanel adventurePanel;
 
-    private List<GameObject> conectorHeroObjects = new List<GameObject>();
-    private List<GameObject> сonnectorConsumablesObjects = new List<GameObject>(); 
+   
 
+    
 
     public void ShowHeroes(List<Hero> heroes)
     {
-        СlearListObject(conectorHeroObjects);
-        foreach (Hero hero in heroes)
+        СlearChoiceMenu();
+        for(int i=0;i< heroes.Count; i++)
         {
-
-            AdventureHeroPanel adventureHeroPanel = Instantiate(heroPanel, сonnectorHero).GetComponent<AdventureHeroPanel>();
-            conectorHeroObjects.Add(adventureHeroPanel.gameObject);
-            adventureHeroPanel.Init(hero, adventurePanel);
-        }
+            adventureHeroPanel[i].Init(heroes[i], adventurePanel);
+        }   
     }
     public void ShowConsumables(Dictionary<Consumable, int> consumables)
     {
-        СlearListObject(conectorHeroObjects);
+        СlearChoiceMenu();
 
         Dictionary<Consumable, int>.KeyCollection consumablesKey = consumables.Keys;
 
+        int i=0;
         foreach (Consumable consumable in consumablesKey)
         {
-
-            PanelAdventureConsumables panelAdventureConsumables = Instantiate(consumablesPanel, сonnectorHero).GetComponent<PanelAdventureConsumables>();
-            conectorHeroObjects.Add(panelAdventureConsumables.gameObject);
-            panelAdventureConsumables.Init(consumables[consumable].ToString(), consumable, adventurePanel);
+            adventureConsumablesPanel[i].Init(consumables[consumable].ToString(), consumable, adventurePanel);
+            i++;
         }
     }
 
-    private void СlearListObject(List<GameObject> ListObject)
+    private void СlearChoiceMenu()
     {
-        if (ListObject != null)
+        foreach(AdventureHeroPanel heroPanel in adventureHeroPanel)
         {
-            while (ListObject.Count != 0)
+            if (heroPanel.gameObject.activeSelf == false)
             {
-                Destroy(ListObject[0]);
-                ListObject.Remove(ListObject[0]);
+                break;
             }
+            heroPanel.gameObject.SetActive(false);
         }
-    }
+        foreach (AdventureConsumablesPanel ConsumablesPanel in adventureConsumablesPanel)
+        {
+            if (ConsumablesPanel.gameObject.activeSelf == false)
+            {
+                break;
+            }
+            ConsumablesPanel.gameObject.SetActive(false);
+        }
 
-    public void ChangeHeroIcon(Hero hero, int number)
+    }
+    
+
+
+    public void ChangeHero(Hero hero, int number)
     {
-        heroSlots[number].ChangeHeroIcon(hero);
+        adventureHeroSlot[number].ChangeHero(hero);
     }
 
     public void ShowConsumablesSlots(List<Consumable> consumables)
     {
-        СlearListObject(сonnectorConsumablesObjects);
 
-        foreach (Consumable consumable in consumables)
+        if (consumables.Count < adventureConsumableSlot.Length)
         {
+            for (int i = 0; i < consumables.Count; i++)
+            {
+                adventureConsumableSlot[i].Init(consumables[i], adventurePanel);
+            }
+            for (int i = consumables.Count; i < adventureConsumableSlot.Length; i++)
+            {
+                adventureConsumableSlot[i].gameObject.SetActive(false);
+            }
 
-            AdventureConsumableSlot adventureConsumableSlot = Instantiate(consumablesSlot, сonnectorConsumables).GetComponent<AdventureConsumableSlot>();
-            сonnectorConsumablesObjects.Add(adventureConsumableSlot.gameObject);
-            adventureConsumableSlot.Init(consumable, adventurePanel);
+        }
+        else
+        {
+            Debug.LogError("количкство предметов привысело количество ячеек");
         }
 
     }
 
     public void СreateHeroSlot(int numberSlots)
     {
-        if (heroSlots != null)
+        for(int i=0;i< numberSlots; i++)
         {
-           
-            foreach(AdventureHeroSlot heroSlot in heroSlots)
-            {
-               
-                Destroy(heroSlot.gameObject);
-            }
+            adventureHeroSlot[i].Init(defaultHeroSlotSprite, i, adventurePanel);
         }
-
-
-        heroSlots = new AdventureHeroSlot[numberSlots];
-        for (int i=0;i< numberSlots; i++)
-        {          
-            AdventureHeroSlot adventureHeroSlot = Instantiate(heroSlot, сonnectorHeroSlots).GetComponent<AdventureHeroSlot>();
-            heroSlots[i] = adventureHeroSlot;
-            adventureHeroSlot.Init(defaultHeroSlot,i,adventurePanel);
+        for(int i= numberSlots; i < adventureHeroSlot.Length; i++)
+        {
+            adventureHeroSlot[i].gameObject.SetActive(false);
         }
+       
     }
 
 
