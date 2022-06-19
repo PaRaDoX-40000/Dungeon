@@ -6,7 +6,7 @@ public class HeroEquipmentPanel : MonoBehaviour
 {
     [SerializeField] private HeroPanel[] heroPanels;
     [SerializeField] private HeroesDetailedMenu heroesDetailedMenu;
-    [SerializeField] private CommonHeir commonHeir;
+    [SerializeField] private DataBase dataBase;
     [SerializeField] private InventoryEquipmentPanel inventoryEquipmentPanel;
     [SerializeField] private EquipableDetailedPanel equipableDetailedPanel;
     private Hero targetHero = null;
@@ -30,11 +30,11 @@ public class HeroEquipmentPanel : MonoBehaviour
 
     void ShowHeroes()
     {
-        for(int i = 0;i< commonHeir.dataBase.hero.Count; i++)
+        for(int i = 0;i< dataBase.hero.Count; i++)
         {
-            heroPanels[i].Init(commonHeir.dataBase.hero[i]);
+            heroPanels[i].Init(dataBase.hero[i]);
         }
-        for (int i = commonHeir.dataBase.hero.Count; i < heroPanels.Length; i++)
+        for (int i = dataBase.hero.Count; i < heroPanels.Length; i++)
         {
             heroPanels[i].gameObject.SetActive(false);
         }       
@@ -48,7 +48,7 @@ public class HeroEquipmentPanel : MonoBehaviour
     }
     public void ShoweEquipable()
     {
-        inventoryEquipmentPanel.ShowEquipable(targetHero.Clas, commonHeir.dataBase);
+        inventoryEquipmentPanel.ShowEquipable(targetHero.Clas, dataBase);
         
     }
     public void ShowDetailedEquipable(Equipable equipable)
@@ -58,16 +58,16 @@ public class HeroEquipmentPanel : MonoBehaviour
     }
     public void ShowDetailedEquipableInHeroSlots(int equipmentSlot)
     {
-        if (targetHero.Equipment[equipmentSlot] != null)
+        if (targetHero.HeroEquipmentSlots[equipmentSlot].Equipped == true)
         {
-            targetEquipable = targetHero.Equipment[equipmentSlot];
+            targetEquipable = targetHero.HeroEquipmentSlots[equipmentSlot].Equipable;
             equipableDetailedPanel.ShowDetailedEquipable(targetEquipable);
         }
         
     }
     public void Equip()
     {
-        targetHero.Equip(targetEquipable, commonHeir.dataBase);
+        targetHero.Equip(targetEquipable, dataBase);
         ShoweDetailedHero(targetHero);
         ShowDetailedEquipable(targetEquipable);
     }

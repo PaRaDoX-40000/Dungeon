@@ -38,7 +38,7 @@ public class Adventure : MonoBehaviour
 
     [SerializeField] private Fight fight;
 
-    [SerializeField] private CommonHeir commonHeir;
+    [SerializeField] private DataBase dataBase;
     [SerializeField] private ReportPanel reportPanel;
 
    public UnityAction<Loot, Adventure> FaindLootEvent;
@@ -111,8 +111,7 @@ public class Adventure : MonoBehaviour
                 else
                 {
                     StartRetreat();
-                }
-               
+                }             
             }
         }
         else
@@ -146,8 +145,6 @@ public class Adventure : MonoBehaviour
                 loots.Add(rarityLoot.Loot);
                 if (FaindLootEvent != null)
                     FaindLootEvent.Invoke(rarityLoot.Loot, this);
-
-
             }           
         }      
     }
@@ -161,11 +158,8 @@ public class Adventure : MonoBehaviour
         {
             if (FaindEnemyEvent != null)
                 FaindEnemyEvent(this);
-            MetEnemy();
-            
-        }
-            
-
+            MetEnemy();        
+        }           
     }
     
     void MetEnemy()
@@ -181,7 +175,6 @@ public class Adventure : MonoBehaviour
         }
         fight.TryStartFight(heroes, enemies);
         ChangeState();
-
     }
 
     public void ChangeState()
@@ -245,12 +238,12 @@ public class Adventure : MonoBehaviour
         reportPanel.AddReportAdventure(reportAdventure);
 
         
-        commonHeir.dataBase.adventure.Remove(this);
+        dataBase.adventure.Remove(this);
         Destroy(this.gameObject);
     }
 
 
-    public void Init(Hero[]heroes,List<Consumable>consumables, CommonHeir commonHeir,ReportPanel reportPanel, List<HeroPeculiarity> HeroPeculiarities)
+    public void Init(Hero[]heroes,List<Consumable>consumables, DataBase dataBase,ReportPanel reportPanel, List<HeroPeculiarity> HeroPeculiarities)
     {
        foreach(Hero hero in heroes)
         {
@@ -262,7 +255,7 @@ public class Adventure : MonoBehaviour
         this.reportPanel = reportPanel;
         this.consumables.AddRange(consumables);
         
-        this.commonHeir = commonHeir;
+        this.dataBase = dataBase;
         int minSpeed = this.heroes[0].Stats[3];
         foreach (Hero hero in this.heroes)
         {

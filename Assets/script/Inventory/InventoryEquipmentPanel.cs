@@ -22,8 +22,10 @@ public class InventoryEquipmentPanel : MonoBehaviour
     public void ShowEquipable(int clase,DataBase dataBase)
     {
         int counter = 0;
-        foreach(Equipable equipable in dataBase.inventory.Where(equip => equip.EquipableClass.classes.Contains((EquipableClass.Class)clase)))
+        
+        foreach (Equipable equipable in dataBase.inventory.Where(equip => equip.EquipableClass.classes.Contains((EquipableClass.Class)clase)))
         {
+            
             inventorySlots[counter].Init(equipable);
             counter++;
         }

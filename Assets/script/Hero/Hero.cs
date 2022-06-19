@@ -34,8 +34,8 @@ public class Hero
     public bool retreated = false;
 
 
-
-    private Equipable[] equipment = new Equipable[3];
+   private HeroEquipmentSlot[]  heroEquipmentSlots;
+    //private Equipable[] equipment = new Equipable[3];
     
 
     // 1 Weapon;
@@ -44,7 +44,7 @@ public class Hero
     private int clas;
 
 
-    public Equipable[] Equipment => equipment;
+    //public Equipable[] Equipment => equipment;
 
     public string Name => name;
     public int[] Stats => stats;
@@ -54,10 +54,12 @@ public class Hero
 
     public List<HeroPeculiarity> HeroPeculiarities => heroPeculiarities;
 
-    public int Clas => clas; 
+    public int Clas => clas;
+
+    public HeroEquipmentSlot[] HeroEquipmentSlots => heroEquipmentSlots;
 
     public List<StatusEffectСontainer> statusEffectСontainer = new List<StatusEffectСontainer>();
-        //public особеность
+       
 
     public UnityAction<Enemy, Hero, Fight, Adventure > BeforeTakingDamage;
     public UnityAction<Enemy, Hero, Fight, Adventure> AfterTakingDamage;
@@ -87,11 +89,9 @@ public class Hero
         Stats[8] = Random.Range(7, 15);
 
         //level = 1;
+        heroEquipmentSlots = new HeroEquipmentSlot[3] {new HeroEquipmentSlot(0), new HeroEquipmentSlot(1),new HeroEquipmentSlot(2) };
         heroLevel = new Level(Stats);
-        for (int i=0;i<3;i++)
-        {
-            Equipment[i] = null;
-        }
+        
 
         clas = heroClass.Clas;
         icon = heroClass.Sprite[Random.Range(0, heroClass.Sprite.Length)];
@@ -152,8 +152,7 @@ public class Hero
         if(dead == true)
         {
             foreach(HeroPeculiarity heroPeculiarity in heroPeculiarities)
-            {
-                
+            {               
                 heroPeculiarity.Peculiarity.Distribution.Unsubscribe(fight, adventure, this, heroPeculiarity);
             }
         }
@@ -174,52 +173,21 @@ public class Hero
         float heroChance = Random.Range(0f, 1f);
         float enemieChance = Random.Range(0f, 1f);
         if(Stats[3]* heroChance> enemy.Stats[4]* enemieChance)
-        {
-           
+        {        
             retreated = true;
-        }
-        
+        }      
     }
     public void Heal(int amount)
-    {
+    {      
         Stats[0] += amount;
         if (Stats[0] > Stats[1])
             Stats[0] = Stats[1];
     }
     public void Equip(Equipable equipable,DataBase dataBase)
     {
-        bool same = false;
-        if (equipable == Equipment[(int)equipable.EquipableClass.equippableSlot])
-        {
-            same = true;
-        }
-        if (Equipment[(int)equipable.EquipableClass.equippableSlot] != null)
-        {
-            DesEquip((int)equipable.EquipableClass.equippableSlot, dataBase);
-        }   
-        if(same == false)
-        {
-            Equipment[(int)equipable.EquipableClass.equippableSlot] = equipable;
-            foreach (StatsApp statsAp in equipable.StatsApp)
-            {
-                Stats[(int)statsAp.Stat] += statsAp.Value;
-            }
-            equipable.Equip();
-            dataBase.TruRemoveEquipable(equipable);
-        }
-       
+        HeroEquipmentSlots[(int)equipable.EquipableClass.equippableSlot].Equip(equipable, dataBase, ref stats);       
     }
-    void DesEquip(int equipmentSlot, DataBase dataBase)
-    {       
-        foreach (StatsApp statsAp in Equipment[equipmentSlot].StatsApp)
-        {
-            Stats[(int)statsAp.Stat] -= statsAp.Value;
-        }
-        Equipment[equipmentSlot].DesEquip();
-        dataBase.AddEquipable(Equipment[equipmentSlot]);
-        Equipment[equipmentSlot] = null;
-
-    }
+    
 
     public void LevelApp(int amunt)
     {

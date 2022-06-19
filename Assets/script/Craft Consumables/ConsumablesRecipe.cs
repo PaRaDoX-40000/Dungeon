@@ -40,18 +40,14 @@ public class ConsumablesRecipe : MonoBehaviour
     {
         enoughIngredients = true;
         foreach (Ingredient ingredient in ingredients)
-        {
-            
-            
+        {     
             if (dataBase.loots.ContainsKey(ingredient.Loot))
-            {
-               
+            {               
                if(dataBase.loots[ingredient.Loot] < ingredient.Number)
                {
                     enoughIngredients = false;                    
                }
                 ingredient.SetState(dataBase.loots[ingredient.Loot]);
-
             }
             else
             {
@@ -62,8 +58,7 @@ public class ConsumablesRecipe : MonoBehaviour
         if(dataBase.gold < gold)
         {
             enoughIngredients = false;
-        }
-       
+        }      
     }
    
 

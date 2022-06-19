@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-  public class DataBase
+[CreateAssetMenuAttribute(menuName = "DataBase")]
+  public class DataBase: ScriptableObject
 {
     public SaveDataHelper saveDataHelper;
     public List<Hero> hero = new List<Hero>();
@@ -20,7 +21,14 @@ using UnityEngine;
     public List<ReportAdventure> reportAdventure= new List<ReportAdventure>();
  
     public List<Adventure> adventure = new List<Adventure>();
-   
+
+    //public List<Equipable> Inventory => inventory;
+
+    private void Awake()
+    {
+        hero.Clear();
+    }
+
     public void Save()
     {
         saveDataHelper.Save(loots, consumables);
@@ -126,7 +134,9 @@ using UnityEngine;
         if (inventory.Contains(equipable))
         {
             inventory.Remove(equipable);
+           
         }
+        Debug.Log("no wat");
     }
 
 

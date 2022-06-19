@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HeroPanel : MonoBehaviour
+public class HeroPanel : MonoBehaviour //RepotHeroPanel
 {
 
     [SerializeField] private Image icon;
@@ -12,7 +12,7 @@ public class HeroPanel : MonoBehaviour
     [SerializeField] private TMP_Text textHealth;
     [SerializeField] private TMP_Text textLevel;
     [SerializeField] private HeroEquipmentPanel HeroEquipmentPanel;
-    private Hero hero;
+    protected Hero hero;
 
     public void Init(Hero hero)
     {
@@ -24,7 +24,7 @@ public class HeroPanel : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-   public void ShoweDetailedHero()
+   public virtual void ShoweDetailedHero()
     {
         HeroEquipmentPanel.ShoweDetailedHero(hero);
     }

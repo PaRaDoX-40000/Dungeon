@@ -27,8 +27,8 @@ public class StatsApp
         Visibility = 8
     }
 
-    private Stats stats;
-    private int value;
+    [SerializeField] private Stats stats;
+    [SerializeField] private int value;
 
     public Stats Stat=> stats;
     public int Value { get => value; set => this.value = value; }

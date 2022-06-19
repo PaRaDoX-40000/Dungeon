@@ -6,7 +6,7 @@ public class AdventurePanel : MonoBehaviour
 {
     [SerializeField] private DungeonCollection dungeonCollection;
     [SerializeField] private AdventurePanelUI adventurePanelUI;
-    [SerializeField] private CommonHeir commonHeir;   
+    [SerializeField] private DataBase dataBase;   
     [SerializeField] private Transform сonnectorAdventures; 
     [SerializeField] private ReportPanel reportPanel;
     [SerializeField] private GameObject adventurePrefab;
@@ -27,11 +27,11 @@ public class AdventurePanel : MonoBehaviour
 
     public void ShowConsumables()
     {       
-        adventurePanelUI.ShowConsumables(commonHeir.dataBase.consumables);
+        adventurePanelUI.ShowConsumables(dataBase.consumables);
     }
     public void ShowHeroes()
     {
-        adventurePanelUI.ShowHeroes(commonHeir.dataBase.hero);
+        adventurePanelUI.ShowHeroes(dataBase.hero);
     }
     public void ChooseHero(Hero hero)
     {       
@@ -40,7 +40,7 @@ public class AdventurePanel : MonoBehaviour
             if (chosenHeroes[i] == null)
             {               
                 chosenHeroes[i] = hero;
-                commonHeir.dataBase.hero.Remove(hero);
+                dataBase.hero.Remove(hero);
                 ShowHeroes();
                 adventurePanelUI.ChangeHero(hero, i);
                 break;
@@ -53,7 +53,7 @@ public class AdventurePanel : MonoBehaviour
         if (chosenConsumable.Count < maxConsumabls)
         {
             chosenConsumable.Add(consumable);
-            commonHeir.dataBase.TryRemoveConsumable(consumable);
+            dataBase.TryRemoveConsumable(consumable);
             ShowConsumables();
             adventurePanelUI.ShowConsumablesSlots(chosenConsumable);
         }
@@ -62,7 +62,7 @@ public class AdventurePanel : MonoBehaviour
 
     public void ReturnConsumable(Consumable consumable)
     {
-        commonHeir.dataBase.AddConsumables(new List<Consumable>() { consumable });
+        dataBase.AddConsumables(new List<Consumable>() { consumable });
         chosenConsumable.Remove(consumable);
         ShowConsumables();
         adventurePanelUI.ShowConsumablesSlots(chosenConsumable);
@@ -71,7 +71,7 @@ public class AdventurePanel : MonoBehaviour
 
     public void ReturnHero(Hero hero,int number)
     {
-        commonHeir.dataBase.AddHeros(new List<Hero>() { hero });
+        dataBase.AddHeros(new List<Hero>() { hero });
         chosenHeroes[number] = null;
         ShowHeroes();
     }
@@ -91,10 +91,9 @@ public class AdventurePanel : MonoBehaviour
             GameObject adventureGameObject = Instantiate(adventurePrefab);
             adventureGameObject.transform.SetParent(сonnectorAdventures);
             Adventure adventure = adventureGameObject.GetComponent<Adventure>();
-            adventure.Init(chosenHeroes, chosenConsumable, commonHeir,reportPanel, heroPeculiarities);            
+            adventure.Init(chosenHeroes, chosenConsumable, dataBase,reportPanel, heroPeculiarities);            
             СlearAdventurePanel();
-        }
-       
+        }      
     }
 
     private void СlearAdventurePanel()
@@ -118,9 +117,9 @@ public class AdventurePanel : MonoBehaviour
                 heros.Add(hero);
             }
         }
-        commonHeir.dataBase.AddHeros(heros);
+        dataBase.AddHeros(heros);
 
-        commonHeir.dataBase.AddConsumables(chosenConsumable);
+        dataBase.AddConsumables(chosenConsumable);
         chosenConsumable.Clear();
     }
     private void OnDisable()

@@ -38,7 +38,7 @@ public class Fight : MonoBehaviour
             generalSecrecy += hero.Stats[8];
         }
         generalSecrecy = generalSecrecy / playerParty.Count;
-
+ 
         float heroChance = Random.Range(1, 10);
         float enemieChance = Random.Range(1, 10);
         if (heroChance + generalSecrecy > enemieChance + oppositeParty[0].Stats[5])
@@ -58,12 +58,10 @@ public class Fight : MonoBehaviour
                         enemy.GetDamage((int)(enemy.Stats[1] * 0.15));
                     }
                     StartFight(playerParty, oppositeParty);
-
                 }
                 else
                 {
                     DidNotFight();
-
                 }
             }
         }
@@ -83,13 +81,13 @@ public class Fight : MonoBehaviour
         foreach (Hero hero in playerParty)
         {
             Heroes.Add(hero);
-            Coroutine coroutine = StartCoroutine(DoHit(hero));
+            Coroutine coroutine = StartCoroutine(HeroDoHit(hero));
             heroesCoroutine.Add(coroutine);
         }
         foreach (Enemy enemy in oppositeParty)
         {
             enemies.Add(enemy);
-            enemiesCoroutine.Add(StartCoroutine(DoHit(enemy)));
+            enemiesCoroutine.Add(StartCoroutine(EnemyDoHit(enemy)));
         }
         didEveryoneRunAway = StartCoroutine(DidEveryoneRunAway());
         targetEnemie = enemies[0];
@@ -116,15 +114,11 @@ public class Fight : MonoBehaviour
         }
     }
    
-    private IEnumerator DoHit(Hero hero)
-    {
-       
+    private IEnumerator HeroDoHit(Hero hero)
+    {    
         while (hero.Dead==false && hero.retreated== false)
-        {
-           
+        {       
             yield return new WaitForSeconds((100f / (float)(hero.Stats[6])));
-
-
             if (hero.Stats[0] < hero.Stats[1] / 2)
             {
                 foreach (ConsumableHealing consumableHealing in consumableHealing)
@@ -135,13 +129,11 @@ public class Fight : MonoBehaviour
                         adventure.RemoveConsumable(consumableHealing);
                         break;
                     }
-                }
-                    
+                }                  
             }
-
+            if(hero.statusEffectСontainer != null)
             if (hero.statusEffectСontainer.Count != 0)
             {
-                
                 List<StatusEffectСontainer> statuses = new List<StatusEffectСontainer>();
                 foreach(StatusEffectСontainer statusEffectСontainer in hero.statusEffectСontainer)
                 {
@@ -159,8 +151,6 @@ public class Fight : MonoBehaviour
                         
                         StopCoroutine(statusEffectСontainer.CoroutineEffect);
                         statusEffectСontainer.ForceRemoveStatus(hero);
-                       
-
                     }
                 }
             }
@@ -181,35 +171,23 @@ public class Fight : MonoBehaviour
                     VictoryEndFight();
                     break;
                 }
-
             }
             if (TryFight(Heroes, enemies) == false)
             {                             
                 hero.TryRetreat(targetEnemie);               
             }
-            
-            
         }
     }
    
-    private IEnumerator DoHit(Enemy enemy)
+    private IEnumerator EnemyDoHit(Enemy enemy)
     {
         while (enemy.Dead == false)
         {
-            
-
-            yield return new WaitForSeconds((100f / (float)enemy.Stats[4]));
-
-            
-                         
+            yield return new WaitForSeconds((100f / (float)enemy.Stats[4]));            
             Hero targethero = FindTargetHero();
-
-
-
             if (targethero != null)
             {
                 enemy.DoHit(targethero, this, adventure);
-
                 if (enemy.StatusEffectСhance.StatusEffect != null)
                 {
                     int chance = Random.Range(0, 100);
@@ -220,12 +198,8 @@ public class Fight : MonoBehaviour
                         statusEffectСontainer.SetCoroutine(coroutine);
                         targethero.statusEffectСontainer.Add(statusEffectСontainer);
                     }
-
-
                 }
-            }
-
-            
+            }   
             if (Heroes.Count != 0)
             {
                 bool everyoneDead = true;
@@ -242,9 +216,6 @@ public class Fight : MonoBehaviour
                     break;
                 }
             }
-
-
-            
         }
     }
 
@@ -286,9 +257,7 @@ public class Fight : MonoBehaviour
         }
         adventure.AddLootEnemy(enemyLoot);
         ReturnSurvivingHeroes();
-        ClearFight();
-
-        
+        ClearFight();    
     }
 
     private void DefeatEndFight()
@@ -296,16 +265,12 @@ public class Fight : MonoBehaviour
         Debug.Log("все мерты");
         ClearFight();
         Destroy(this.gameObject);
-
-
     }
 
     private void RetreatEndFight()
-    {
-        
+    {  
         adventure.StartRetreat();
-        ReturnSurvivingHeroes();
-        
+        ReturnSurvivingHeroes(); 
         ClearFight();
     }
 
@@ -388,6 +353,7 @@ public class Fight : MonoBehaviour
                
                 deadHero.Add(hero);
             }
+            if(hero.statusEffectСontainer != null)
             if (hero.statusEffectСontainer.Count > 0)
             {
                 while(hero.statusEffectСontainer.Count == 0)

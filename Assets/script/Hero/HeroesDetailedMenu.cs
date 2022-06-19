@@ -29,20 +29,12 @@ public class HeroesDetailedMenu : MonoBehaviour
         }
         icon.sprite = hero.Icon;
         
-        for (int j = 0; j < hero.Equipment.Length; j++)
+        for (int j = 0; j < hero.HeroEquipmentSlots.Length; j++)
         {
-            if (hero.Equipment[j] != null)
-            {
-                if(hero.Equipment[j].Icon != null)
-                {
-                   aitems[j].sprite = hero.Equipment[j].Icon;
-                   aitems[j].gameObject.SetActive(true);
-                }
-                else
-                {
-                    aitems[j].gameObject.SetActive(false);
-                }
-
+            if (hero.HeroEquipmentSlots[j].Equipped == true)
+            {                         
+                aitems[j].sprite = hero.HeroEquipmentSlots[j].Equipable.Icon;
+                aitems[j].gameObject.SetActive(true);                               
             }
             else
             {
@@ -64,7 +56,6 @@ public class HeroesDetailedMenu : MonoBehaviour
         }
         icon.sprite = defaultSprite;
         healthBar.fillAmount = 1f;
-
     }
 
 

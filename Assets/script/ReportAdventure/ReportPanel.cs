@@ -7,8 +7,8 @@ public class ReportPanel : MonoBehaviour
 {
     [SerializeField] private ReportPanelUI reportPanelUI;
 
-    private List<ReportAdventure> reportAdventure = new List<ReportAdventure>();
-    [SerializeField] private CommonHeir CommonHeir;
+    [SerializeField] private List<ReportAdventure> reportAdventure = new List<ReportAdventure>();
+    [SerializeField] private DataBase dataBase;
     private ReportAdventure targetReportAdventure= null;
     [SerializeField] public UnityEvent AddReport;
 
@@ -20,16 +20,16 @@ public class ReportPanel : MonoBehaviour
     {
         reportAdventure.Add(report);       
         AddReport?.Invoke();
-        ShowHeroReportPanel();
+        ShowReport();
     }
 
-    void ShowHeroReportPanel()
+    void ShowReport()
     {
-        reportPanelUI.ShowHeroReportPanel(reportAdventure);
+        reportPanelUI.ShowReport(reportAdventure);
     }
     private void OnEnable()
     {
-        ShowHeroReportPanel();
+        ShowReport();
     }
     public void ShowReportDetailedPanel(ReportAdventure reportAdventure)
     {
@@ -41,15 +41,13 @@ public class ReportPanel : MonoBehaviour
         if (targetReportAdventure != null)
         {
             
-            CommonHeir.dataBase.AddLoots(targetReportAdventure.Loots);
-            CommonHeir.dataBase.AddConsumables(targetReportAdventure.NotUsedConsumable);
-            CommonHeir.dataBase.AddHeros(targetReportAdventure.LiveHeroes);
+            dataBase.AddLoots(targetReportAdventure.Loots);
+            dataBase.AddConsumables(targetReportAdventure.NotUsedConsumable);
+            dataBase.AddHeros(targetReportAdventure.LiveHeroes);
             reportAdventure.Remove(targetReportAdventure);
             targetReportAdventure = null;
             reportPanelUI.OffReportDetailedPanel();
-            ShowHeroReportPanel();
-        }
-        
-
+            ShowReport();
+        }      
     }
 }

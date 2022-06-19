@@ -8,9 +8,9 @@ public class Consumable : ScriptableObject
     
     [SerializeField] private Sprite icon;
     [SerializeField] private string description;
-    [SerializeField] private string property;
+    
 
     public Sprite Icon => icon;
     public string Description => description;
-    public string Property => property;
+   
 }

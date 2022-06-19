@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e21f1ab07358c07469788f8e440bcedb, type: 3}
+  m_Name: Data Base
+  m_EditorClassIdentifier: 
+  saveDataHelper:
+    loots: []
+    lootsNumber: 
+    consumables: []
+    consumablesNumber: 
+  hero:
+  - stats: 5f0000005f000000080000000b000000000000000e0000000b0000005d0000000d000000
+    heroPeculiarities: []
+    retreated: 0
+  - stats: 5e0000005e0000000c00000007000000000000000b00000009000000b000000007000000
+    heroPeculiarities: []
+    retreated: 0
+  - stats: 5500000055000000090000000a000000000000000c0000000d0000004900000007000000
+    heroPeculiarities: []
+    retreated: 0
+  - stats: 4d0000004d000000090000000d00000019000000070000000d000000860000000a000000
+    heroPeculiarities: []
+    retreated: 0
+  inventory: []
+  TimeNewHeroes: 0
+  ProposedHeroes:
+  - stats: 5c0000005c000000070000000800000000000000070000000a0000008400000007000000
+    heroPeculiarities: []
+    retreated: 0
+  - stats: 5b0000005b000000090000000b00000000000000080000000e000000c300000008000000
+    heroPeculiarities: []
+    retreated: 0
+  - stats: 5a0000005a0000000c0000000e0000000000000008000000080000006500000009000000
+    heroPeculiarities: []
+    retreated: 0
+  - stats: 4c0000004c0000000b0000000c00000000000000090000000c000000730000000e000000
+    heroPeculiarities: []
+    retreated: 0
+  - stats: 5f0000005f000000090000000e000000000000000900000007000000190000000e000000
+    heroPeculiarities: []
+    retreated: 0
+  gold: 99967400
+  reportAdventure: []
+  adventure: []

@@ -42,8 +42,6 @@ public class Enemy : MonoBehaviour
 
         }
         return dead;
-
-
     }
 
     public void DoHit(Hero hero, Fight fight, Adventure adventure)

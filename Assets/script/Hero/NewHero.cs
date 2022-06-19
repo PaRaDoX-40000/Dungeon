@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class NewHero : MonoBehaviour
 {
-    public CommonHeir commonHeir;
+   
+    [SerializeField] private DataBase dataBase;
+    [SerializeField] private HeroClasses heroClasses;
+    [SerializeField] private PeculiaritiesCollection PeculiaritiesCollection;
 
-   void UpgradeNewHeroes(int amount)
+    void UpgradeNewHeroes(int amount)
     {
-        commonHeir.dataBase.ProposedHeroes.Clear();
+        dataBase.ProposedHeroes.Clear();
         for (int i=0; i < amount; i++)
         {
-            commonHeir.dataBase.ProposedHeroes.Add(new Hero(commonHeir.heroClasses.heroClass[Random.Range(0, commonHeir.heroClasses.heroClass.Length)]));
+            dataBase.ProposedHeroes.Add(new Hero(heroClasses.heroClass[Random.Range(0, heroClasses.heroClass.Length)]));
         }
     }
 
     private void Start()
     {
         UpgradeNewHeroes(5);
+        dataBase.hero.Add(new Hero(heroClasses.heroClass[0], PeculiaritiesCollection.PeculiaritiesLIst));
+        
+        dataBase.hero.Add(new Hero(heroClasses.heroClass[1]));
+        dataBase.hero.Add(new Hero(heroClasses.heroClass[2]));
+        dataBase.hero.Add(new Hero(heroClasses.heroClass[Random.Range(0, heroClasses.heroClass.Length)]));
     }
 
 

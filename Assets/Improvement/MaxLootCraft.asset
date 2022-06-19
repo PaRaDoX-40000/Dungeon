@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 1
   resources:
-  - ingredient: {fileID: 11400000, guid: 9a06eaa89adfa664d9d628a8e4a62352, type: 2}
+  - loot: {fileID: 11400000, guid: 58e7b9cde1486b64d9578b11f7592515, type: 2}
     number: 4
-  - ingredient: {fileID: 11400000, guid: 58e7b9cde1486b64d9578b11f7592515, type: 2}
-    number: 100000
+  - loot: {fileID: 11400000, guid: 9cc360bd03406f64d9f50c67da76ca04, type: 2}
+    number: 100
   gold: 40000000
   title: "\u0423\u0432\u043A\u043B\u0435\u0447\u0435\u043D\u0438\u0435 \u043A\u043E\u0435\u043A"
   description: "\u0411\u043E\u043B\u044C\u0448\u0435 \u043A\u043E\u0435\u043A \u0431\u043E\u0433\u0443
     \u043A\u043E\u0435\u043A"
   canCreate: 0
-  commonHeir: {fileID: 0}
+  dataBase: {fileID: 11400000, guid: 2114e9ca3e411b145be3a05ad1842f8e, type: 2}

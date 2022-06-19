@@ -14,11 +14,11 @@ public class ImprovementPanel : MonoBehaviour
     [SerializeField] private PictureWithText[] lootPanel;
 
 
-    public void Init(Improvement improvement, CommonHeir commonHeir)
+    public void Init(Improvement improvement, DataBase dataBase)
     {
         titleText.text = improvement.Title;
         descriptionText.text = improvement.Description;
-        buttonCraft.interactable = improvement.CanBeImproved(commonHeir);
+        buttonCraft.interactable = improvement.CanBeImproved();
         goldText.text = improvement.Gold.ToString();
         this.improvement = improvement;
         
@@ -30,7 +30,7 @@ public class ImprovementPanel : MonoBehaviour
         {
             lootPanel[i].gameObject.SetActive(false);
         }
-        improvement.commonHeir = commonHeir;
+        improvement.dataBase = dataBase;
         gameObject.SetActive(true);
     }
 

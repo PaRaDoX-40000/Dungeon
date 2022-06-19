@@ -9,7 +9,7 @@ public class CraftEquipable : MonoBehaviour
 {  
     [SerializeField] private LootAmountChangerPanel[] lootAmountChangerPanels; 
     [SerializeField] private CraftEquipablePanelUI CraftEquipablePanelUI;
-    [SerializeField] CommonHeir commonHeir;
+    [SerializeField] DataBase dataBase;
     [SerializeField] CraftMiniGame craftMiniGame;
     private int gold = 100;
     private List<Loot> loots = new List<Loot>();
@@ -38,7 +38,7 @@ public class CraftEquipable : MonoBehaviour
 
     public void ShowLoot(int stat)
     {              
-        Dictionary<Loot, int> dataBaseLoots = commonHeir.dataBase.loots;
+        Dictionary<Loot, int> dataBaseLoots = dataBase.loots;
         Dictionary<Loot, int>.KeyCollection lootsKey = dataBaseLoots.Keys;
         int counter = 0;
         foreach(Loot loot in lootsKey.Where(loot=> (int)loot.StatsApp.Stat== stat))
@@ -85,7 +85,7 @@ public class CraftEquipable : MonoBehaviour
 
     private void СanСreate()
     {             
-        CraftEquipablePanelUI.SetActiveButtonCraft(numberImprovements > 0 && commonHeir.dataBase.gold > gold);             
+        CraftEquipablePanelUI.SetActiveButtonCraft(numberImprovements > 0 && dataBase.gold > gold);             
     }
 
 
@@ -115,9 +115,9 @@ public class CraftEquipable : MonoBehaviour
             debuffs.Add(i.StatsApp);
         }
         Equipable equipable = new Equipable( debuffs, equipableClass, iconEquipable/*, time*/);
-        commonHeir.dataBase.AddEquipable(equipable);
-        commonHeir.dataBase.TryRemoveLoots(loots);
-        commonHeir.dataBase.TryСhangeGold(-gold);
+        dataBase.AddEquipable(equipable);
+        dataBase.TryRemoveLoots(loots);
+        dataBase.TryСhangeGold(-gold);
         ClearCraft();
     }
     private void ClearCraft()
@@ -126,13 +126,13 @@ public class CraftEquipable : MonoBehaviour
         debuffs.Clear();
         gold = 100;
         numberImprovements = 0;
+        craftFull = false;
 
         foreach (LootAmountChangerPanel lootAmountChangerPanel in lootAmountChangerPanels)
         {
             lootAmountChangerPanel.gameObject.SetActive(false);
         }
         CraftEquipablePanelUI.Clear();
-
     }
 
     

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: "\u041A\u043E\u0441\u0442\u0438"
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 53f0a099e5669d345a3f0b7f41c2f8c7, type: 3}
-  statsAp:
+  lootName: 
+  statsApp:
     stats: 3
     value: 1

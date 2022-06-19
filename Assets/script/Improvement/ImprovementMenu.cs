@@ -7,7 +7,7 @@ public class ImprovementMenu : MonoBehaviour
 
     [SerializeField] private ImprovementPanel[] improvementPanel;
     [SerializeField] private ImprovementCollection improvementCollection;
-    [SerializeField] CommonHeir commonHeir;
+    [SerializeField] DataBase dataBase;
 
 
 
@@ -15,13 +15,12 @@ public class ImprovementMenu : MonoBehaviour
     {
         for(int i=0; i< improvements.Length; i++)
         {
-            improvementPanel[i].Init(improvements[i], commonHeir);           
+            improvementPanel[i].Init(improvements[i], dataBase);           
         }
         for(int i = improvements.Length; i< improvementPanel.Length; i++)
         {
             improvementPanel[i].gameObject.SetActive(false);
-        }
-         
+        }        
     }
 
     public void ChooseImprovement(int number)

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Peculiarities new", menuName = "Peculiarities/Peculiarities", order = 51)]
-public class Peculiarity:ScriptableObject
+public class Peculiarity : ScriptableObject
 {
     
 

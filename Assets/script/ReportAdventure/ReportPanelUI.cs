@@ -15,7 +15,7 @@ public class ReportPanelUI : MonoBehaviour
     }
 
 
-    public void ShowHeroReportPanel(List<ReportAdventure> reportAdventures)
+    public void ShowReport(List<ReportAdventure> reportAdventures)
     {
        
         for(int i = 0;i<reportAdventures.Count;i++)

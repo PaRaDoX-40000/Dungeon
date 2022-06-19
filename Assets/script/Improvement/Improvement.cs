@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Improvement : ScriptableObject
 {
-    //public CommonHeir commonHeir;ImprovementMaxLootCraft
+   
 
     public int level = 1;
     [SerializeField] private Ingredient[] resources;
@@ -12,7 +12,7 @@ public abstract class Improvement : ScriptableObject
     [SerializeField] private string title;
     [SerializeField] private string description;
     [SerializeField] private bool canCreate = false;
-    [SerializeField] public CommonHeir commonHeir;
+    [SerializeField] public DataBase dataBase;
 
     public Ingredient[] Resources => resources;
     public int Gold => gold; 
@@ -23,21 +23,18 @@ public abstract class Improvement : ScriptableObject
 
     //public int Level => level;
 
-    public bool CanBeImproved(CommonHeir commonHeir)
+    public bool CanBeImproved()
     {
         bool canCreate = false;
         foreach (Ingredient i in Resources)
         {
-            if (commonHeir.dataBase.loots.ContainsKey(i.Loot))
+            if (this.dataBase.loots.ContainsKey(i.Loot))
             {
-
-                if (commonHeir.dataBase.loots[i.Loot] < i.Number)
+                if (this.dataBase.loots[i.Loot] < i.Number)
                 {
-
                     canCreate = false;
                     return canCreate;
                 }
-
             }
             else
             {
@@ -45,10 +42,8 @@ public abstract class Improvement : ScriptableObject
                 return canCreate;
             }
             canCreate = true;
-
-
         }
-        if (commonHeir.dataBase.gold < Gold)
+        if (this.dataBase.gold < Gold)
         {
             canCreate = false;
         }

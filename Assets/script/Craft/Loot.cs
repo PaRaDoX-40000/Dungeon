@@ -6,10 +6,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="loot new", menuName ="Loot/loot", order = 51)]
 public class Loot : ScriptableObject
 {
-    private Sprite icon;
-    private string lootName;
-    //int stack;  
-    private StatsApp statsApp;
+    [SerializeField] private Sprite icon;
+    [SerializeField] private string lootName;  
+    [SerializeField] private StatsApp statsApp;
 
     public Sprite Icon => icon;
     public string LootName  => lootName; 

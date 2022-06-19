@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+[System.Serializable]
 public class Level 
 {
     List<int> stats;
@@ -16,8 +17,6 @@ public class Level
     public  Level(int[] stats)
     {
         this.stats = new List<int>(stats);
-        
-
         number = 1;
     }
 
@@ -47,9 +46,9 @@ public class Level
         necessaryExperiencePoints += 100;
 
         Debug.Log(stats[1]);
-        foreach (Equipable equipable in hero.Equipment.Where(equipment => equipment != null))
+        foreach (HeroEquipmentSlot equipable in hero.HeroEquipmentSlots.Where(equipment => equipment.Equipped == true))
         {
-            foreach(StatsApp statsApp in equipable.StatsApp.Where(stats => stats!=null))
+            foreach(StatsApp statsApp in equipable.Equipable.StatsApp.Where(stats => stats!=null))
             {
                 heroStats[(int)statsApp.Stat] += statsApp.Value;
             }
@@ -62,10 +61,6 @@ public class Level
         while (experiencePoints > necessaryExperiencePoints)
         {
             LevelApp(ref heroStats, hero);
-        }
-        
-        
-       
-         
+        }      
     }
 }

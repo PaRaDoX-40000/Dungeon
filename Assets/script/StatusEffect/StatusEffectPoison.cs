@@ -5,12 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StatusEffectPoison", menuName = "StatusEffect/Poison", order = 51)]
 public class StatusEffectPoison : StatusEffect
 {
-    [SerializeField] int damagePerTick;
-    [SerializeField] int numberTicks;
+    [SerializeField] private int damagePerTick;
+    [SerializeField] private int numberTicks;
       
     public override IEnumerator EffctCoroutine(Hero hero,StatusEffectСontainer statusEffectСontainer)
-    {
-       
+    {       
         int i = 0;
         while (numberTicks > i)
         {
@@ -21,11 +20,7 @@ public class StatusEffectPoison : StatusEffect
         RemoveStatus(hero);
         statusEffectСontainer.RemoveStatus(hero);
     }
-
     public override void RemoveStatus(Hero hero)
-    {
-                  
-    }
-
-   
+    {                 
+    }  
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class StatusEffectСontainer
 {
     private Coroutine coroutineEffect;
@@ -23,8 +24,7 @@ public class StatusEffectСontainer
     }
 
     public void ForceRemoveStatus(Hero hero)
-    {
-        
+    {      
         statusEffect.RemoveStatus(hero);
         RemoveStatus(hero);
     }
