@@ -7,8 +7,8 @@ using UnityEngine;
 [CreateAssetMenuAttribute(menuName = "DataBase")]
   public class DataBase: ScriptableObject
 {
-    public SaveDataHelper saveDataHelper;
-    public List<Hero> hero = new List<Hero>();
+    [SerializeField] private SaveDataHelper saveDataHelper;
+    public List<Hero> freeHero = new List<Hero>();
     public List<Equipable> inventory = new List<Equipable>();
     
     public Dictionary<Loot, int> loots = new Dictionary<Loot, int>();
@@ -19,14 +19,13 @@ using UnityEngine;
 
 
     public List<ReportAdventure> reportAdventure= new List<ReportAdventure>();
- 
     public List<Adventure> adventure = new List<Adventure>();
 
-    //public List<Equipable> Inventory => inventory;
+    
 
     private void Awake()
     {
-        hero.Clear();
+        freeHero.Clear();
     }
 
     public void Save()
@@ -82,8 +81,6 @@ using UnityEngine;
         }
     }
 
-
-
     public void AddConsumables(List<Consumable> consumables)
     {
         foreach (Consumable consumable in consumables)
@@ -122,8 +119,13 @@ using UnityEngine;
 
     public void AddHeros(List<Hero> heroes)
     {
-        hero.AddRange(heroes);
+        freeHero.AddRange(heroes);
     }
+    public void AddHero(Hero hero)
+    {
+        freeHero.Add(hero);
+    }
+
 
     public void AddEquipable(Equipable equipable)
     {
@@ -136,7 +138,7 @@ using UnityEngine;
             inventory.Remove(equipable);
            
         }
-        Debug.Log("no wat");
+        
     }
 
 

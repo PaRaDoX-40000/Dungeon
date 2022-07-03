@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class RecruitHeroPanel : HeroPanel
 {
-    [SerializeField] private HeroesDetailedMenu detailedMenu;
+    [SerializeField] private RecruitingHeroes recruitingHeroes;
 
     public override void ShoweDetailedHero()
     {
-        detailedMenu.ShoweDetailedHero(hero);
+        recruitingHeroes.ShoweDetailedHero(hero);
     }
 }

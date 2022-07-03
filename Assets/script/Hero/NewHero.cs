@@ -21,11 +21,11 @@ public class NewHero : MonoBehaviour
     private void Start()
     {
         UpgradeNewHeroes(5);
-        dataBase.hero.Add(new Hero(heroClasses.heroClass[0], PeculiaritiesCollection.PeculiaritiesLIst));
+        //dataBase.hero.Add(new Hero(heroClasses.heroClass[0], PeculiaritiesCollection.PeculiaritiesLIst));
         
-        dataBase.hero.Add(new Hero(heroClasses.heroClass[1]));
-        dataBase.hero.Add(new Hero(heroClasses.heroClass[2]));
-        dataBase.hero.Add(new Hero(heroClasses.heroClass[Random.Range(0, heroClasses.heroClass.Length)]));
+        //dataBase.hero.Add(new Hero(heroClasses.heroClass[1]));
+        //dataBase.hero.Add(new Hero(heroClasses.heroClass[2]));
+        //dataBase.hero.Add(new Hero(heroClasses.heroClass[Random.Range(0, heroClasses.heroClass.Length)]));
     }
 
 

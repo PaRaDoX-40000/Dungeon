@@ -31,7 +31,7 @@ public class AdventurePanel : MonoBehaviour
     }
     public void ShowHeroes()
     {
-        adventurePanelUI.ShowHeroes(dataBase.hero);
+        adventurePanelUI.ShowHeroes(dataBase.freeHero);
     }
     public void ChooseHero(Hero hero)
     {       
@@ -40,7 +40,7 @@ public class AdventurePanel : MonoBehaviour
             if (chosenHeroes[i] == null)
             {               
                 chosenHeroes[i] = hero;
-                dataBase.hero.Remove(hero);
+                dataBase.freeHero.Remove(hero);
                 ShowHeroes();
                 adventurePanelUI.ChangeHero(hero, i);
                 break;

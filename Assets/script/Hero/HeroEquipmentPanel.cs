@@ -30,11 +30,11 @@ public class HeroEquipmentPanel : MonoBehaviour
 
     void ShowHeroes()
     {
-        for(int i = 0;i< dataBase.hero.Count; i++)
+        for(int i = 0;i< dataBase.freeHero.Count; i++)
         {
-            heroPanels[i].Init(dataBase.hero[i]);
+            heroPanels[i].Init(dataBase.freeHero[i]);
         }
-        for (int i = dataBase.hero.Count; i < heroPanels.Length; i++)
+        for (int i = dataBase.freeHero.Count; i < heroPanels.Length; i++)
         {
             heroPanels[i].gameObject.SetActive(false);
         }       

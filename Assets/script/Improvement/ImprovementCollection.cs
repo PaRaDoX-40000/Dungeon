@@ -7,19 +7,11 @@ public class ImprovementCollection : MonoBehaviour
 {
     private ImproveSaveData saveData;
 
-    [SerializeField] private Improvement[] improvementsHub;
-    [SerializeField] private Improvement[] improvementsForge;
-    [SerializeField] private Improvement[] improvementsLaboratory;
-    [SerializeField] private Improvement[] improvementsBarracks;
-    [SerializeField] private Improvement[] improvementsTrade;
-
-    public Improvement[] ImprovementsHub  => improvementsHub; 
-    public Improvement[] ImprovementsForge => improvementsForge; 
-    public Improvement[] ImprovementsLaboratory => improvementsLaboratory; 
-    public Improvement[] ImprovementsBarracks => improvementsBarracks; 
-    public Improvement[] ImprovementsTrade => improvementsTrade;
-
+    [SerializeField] private Improvement[] improvements;
     private string path;
+   
+    public Improvement[] Improvements => improvements; 
+   
 
     public void Awake()
     {
@@ -39,20 +31,17 @@ public class ImprovementCollection : MonoBehaviour
         {
 
             saveData = JsonUtility.FromJson<ImproveSaveData>(File.ReadAllText(path));
-            List<List<int>> Levels = saveData.Loading();
+            List<int> Levels = saveData.Loading();
 
-            ProcessElement(Levels[0], improvementsHub);
-            ProcessElement(Levels[1], improvementsForge);
-            ProcessElement(Levels[2], improvementsLaboratory);
-            ProcessElement(Levels[3], improvementsBarracks);
-            ProcessElement(Levels[4], improvementsTrade);
+            ProcessElement(Levels, improvements);
+            
         }
     }
     private void ProcessElement(List<int> levels, Improvement[] improvements)
     {
         for (int i =0;i< improvements.Length;i++)
         {
-            improvements[i].level = levels[i];
+            //improvements[i].level = levels[i];
         }
     }
 }

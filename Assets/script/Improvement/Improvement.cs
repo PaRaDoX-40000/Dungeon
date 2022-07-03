@@ -4,24 +4,33 @@ using UnityEngine;
 
 public abstract class Improvement : ScriptableObject
 {
+    public enum ImprovedStructure
+    {
+        Hub = 0,
+        Forge = 1,
+        Laboratory = 2,
+        Barracks = 3,
+        Trade = 4
+    }
    
 
-    public int level = 1;
+    protected int level = 1;
     [SerializeField] private Ingredient[] resources;
     [SerializeField] private int gold;
     [SerializeField] private string title;
     [SerializeField] private string description;
-    [SerializeField] private bool canCreate = false;
+    private bool canCreate = false;
+
+    [SerializeField] private ImprovedStructure nameImprovedStructure;
+
     [SerializeField] public DataBase dataBase;
 
     public Ingredient[] Resources => resources;
     public int Gold => gold; 
     public string Title => title;
     public string Description => description;
-    public bool CanCreate => canCreate; 
-    
-
-    //public int Level => level;
+    public bool CanCreate => canCreate;
+    public ImprovedStructure NameImprovedStructure => nameImprovedStructure;
 
     public bool CanBeImproved()
     {

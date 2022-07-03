@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ImprovementMenu : MonoBehaviour
 {
@@ -11,13 +12,13 @@ public class ImprovementMenu : MonoBehaviour
 
 
 
-    void ShowImprovements(Improvement[] improvements )
+    void ShowImprovements(List<Improvement> improvements )
     {
-        for(int i=0; i< improvements.Length; i++)
+        for(int i=0; i< improvements.Count; i++)
         {
             improvementPanel[i].Init(improvements[i], dataBase);           
         }
-        for(int i = improvements.Length; i< improvementPanel.Length; i++)
+        for(int i = improvements.Count; i< improvementPanel.Length; i++)
         {
             improvementPanel[i].gameObject.SetActive(false);
         }        
@@ -25,26 +26,7 @@ public class ImprovementMenu : MonoBehaviour
 
     public void ChooseImprovement(int number)
     {
-        switch (number)
-        {
-            case 1:
-                ShowImprovements(improvementCollection.ImprovementsHub);
-                break;
-
-            case 2:
-                ShowImprovements(improvementCollection.ImprovementsForge);
-                break;
-
-            case 3:
-                ShowImprovements(improvementCollection.ImprovementsLaboratory);
-                break;
-            case 4:
-                ShowImprovements(improvementCollection.ImprovementsBarracks);
-                break;
-            case 5:
-                ShowImprovements(improvementCollection.ImprovementsTrade);
-                break;
-        }
+        ShowImprovements(improvementCollection.Improvements.Where(q => (int)q.NameImprovedStructure == number).ToList());
     }
 
 

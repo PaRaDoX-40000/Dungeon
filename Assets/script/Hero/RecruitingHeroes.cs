@@ -1,12 +1,23 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RecruitingHeroes : MonoBehaviour
 {
-    [SerializeField] DataBase dataBase;
-    [SerializeField] HeroPanel[] heroPanel;
-    
+    [SerializeField] private DataBase dataBase;
+    [SerializeField] private HeroPanel[] heroPanel;
+    [SerializeField] private ImprovementMaximBeds improvementMaximBeds;
+    [SerializeField] private HeroesDetailedMenu detailedMenu;
+    private Hero targetHero;
+
+    internal void ShoweDetailedHero(Hero hero)
+    {
+        targetHero = hero;
+        detailedMenu.ShoweDetailedHero(hero);
+    }
+     
+
     public void ChangeHeroes()
     {
        
@@ -27,11 +38,15 @@ public class RecruitingHeroes : MonoBehaviour
 
     public void Recruit()
     {
-        //dataBase.hero.Add(commonHeir.RecruitingDetailedMenu.targetHero);
-        //commonHeir.dataBase.ProposedHeroes.Remove(commonHeir.RecruitingDetailedMenu.targetHero);
-        //commonHeir.RecruitingDetailedMenu.targetHero = null;
-        //commonHeir.RecruitingDetailedMenu.gameObject.SetActive(false);
-        //ChangeHeroes();
+        if(improvementMaximBeds.MaximBeds< dataBase.freeHero.Count && targetHero!=null)
+        {
+            dataBase.AddHero(targetHero);
+            dataBase.ProposedHeroes.Remove(targetHero);
+            targetHero = null;
+            detailedMenu.ShoweEmpty();
+            ChangeHeroes();
+        }
+        
     }
 
 }
